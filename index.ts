@@ -17,13 +17,15 @@ const connection = new Connection( clusterApiUrl('devnet'),'confirmed');
 // Random Public Key that will be used to derive a multisig PDA
 const createKey = Keypair.generate().publicKey;
 const second = Keypair.generate().publicKey;
-
+console.log(createKey)
+console.log(second)
 // Creator should be a Keypair or a Wallet Adapter wallet
 const creator = loadWalletKey("mint.json")
+console.log(creator)
 
 // Derive the multisig PDA
 const [multisigPda] = multisig.getMultisigPda({ createKey });
-
+console.log(multisigPda)
 
 
 async function createMultisigAndPrintSignature() {
