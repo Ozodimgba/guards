@@ -1,0 +1,17 @@
+{
+  "name": "guards",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.78.5",
+    "@sqds/multisig": "^1.9.0"
+  }
+}
