@@ -19,6 +19,8 @@ import {
 	createInitializeAccountInstruction,
 	createInitializeImmutableOwnerInstruction,
 } from "@solana/spl-token";
+import { CreateMetadataAccountV3InstructionArgs, PROGRAM_ID, createCreateMetadataAccountV3Instruction, createUpdateMetadataAccountV2Instruction } from "@metaplex-foundation/mpl-token-metadata";
+import * as anchor from "@coral-xyz/anchor";
 
 export function loadWalletKey(keypairFile:string): Keypair {
     const fs = require("fs");
@@ -27,6 +29,8 @@ export function loadWalletKey(keypairFile:string): Keypair {
     );
     return loaded;
   }
+
+const INITIALIZE = true;
 
 (async () => {
 	const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
@@ -63,8 +67,6 @@ export function loadWalletKey(keypairFile:string): Keypair {
 		),
 	);
 
-    const mintAmount = BigInt(1_000_000_000);
-
     
 	const signature = await sendAndConfirmTransaction(
 		connection,
@@ -72,10 +74,6 @@ export function loadWalletKey(keypairFile:string): Keypair {
 		[payer, mintKeypair],
 		undefined,
 	);
-
-
-	console.log("transaction signature key:", signature);
-	console.log("mint key:", mint.toBase58());
 
 	// create the token account
         const owner = Keypair.generate();
@@ -104,7 +102,7 @@ export function loadWalletKey(keypairFile:string): Keypair {
     }
    console.log(mint.toBase58())
    const amount = 1000;
-    const sig = await mintTo(connection, payer, mint, source, mintAuthority, amount, [], undefined, TOKEN_2022_PROGRAM_ID);
+   const sig = await mintTo(connection, payer, mint, source, mintAuthority, amount, [], undefined, TOKEN_2022_PROGRAM_ID);
 
     console.log(sig)
 })();
