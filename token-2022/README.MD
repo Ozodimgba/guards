@@ -1,0 +1,1 @@
+# Non transferable token minting
